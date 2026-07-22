@@ -20,7 +20,7 @@
         state: latest
       when: ansible_distribution == 'CentOS'
 
-    - name: Install Nginx
+    - name: Install nginx
       package:
         name: nginx
         state: latest

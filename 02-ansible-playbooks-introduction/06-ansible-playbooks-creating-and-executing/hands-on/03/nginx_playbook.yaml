@@ -4,7 +4,6 @@
 # The minus in YAML this indicates a list item.  The playbook contains a list
 # of plays, with each play being a dictionary
 -
-
   # Hosts: where our play will run and options it will run with
   hosts: linux
 
@@ -14,7 +13,7 @@
   # can also be used for pre and post tasks
   tasks:
     - name: Install EPEL
-      yum:
+      dnf:
         name: epel-release
         update_cache: yes
         state: latest
@@ -25,18 +24,7 @@
         name: nginx
         state: latest
 
-    - name: Restart nginx
-      service:
-        name: nginx
-        state: restarted
-      notify: Check HTTP Service
-
-  # Handlers: the list of handlers that are executed as a notify key from a task
-  handlers:
-    - name: Check HTTP Service
-      uri:
-        url: http://{{ ansible_default_ipv4.address }}
-        status_code: 200
+# Handlers: the list of handlers that are executed as a notify key from a task
 
 # Three dots indicate the end of a YAML document
 ...

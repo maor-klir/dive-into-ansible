@@ -31,6 +31,12 @@
         state: restarted
       notify: Check HTTP Service
 
+    - name: Template index.html-base.j2 to index.html on target
+      template:
+        src: index.html-base.j2
+        dest: "{{ nginx_root_location }}/index.html"
+        mode: 0644
+
   # Handlers: the list of handlers that are executed as a notify key from a task
   handlers:
     - name: Check HTTP Service
